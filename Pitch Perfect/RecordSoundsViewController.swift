@@ -14,7 +14,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
 
     var recorder: AVAudioRecorder!
     var recordedAudio: RecordedAudio!
-    var tapImages: [String:UIImage?]!
+    var tapImages: [String:UIImage]!
     var paused = false
 
     @IBOutlet weak var recordButton: UIButton!
@@ -27,8 +27,8 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         tapImages = [
-            "microphone": UIImage(named:"Microphone"),
-            "pause": UIImage(named:"Pause")
+            "Microphone": UIImage(named:"Microphone")!,
+            "Pause": UIImage(named:"Pause")!
         ]
     }
 
@@ -120,9 +120,9 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
 
     func animateTapView(isRecording: Bool) {
         if isRecording {
-            tapView.image = tapImages["pause"]!
+            tapView.image = tapImages["Pause"]
         } else {
-            tapView.image = tapImages["microphone"]!
+            tapView.image = tapImages["Microphone"]
         }
 
         tapView.stopAnimating()
@@ -136,7 +136,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
             options: UIViewAnimationOptions.CurveEaseOut,
             animations: {
                 self.tapView.transform =
-                    CGAffineTransformMakeScale(8, 8)
+                    CGAffineTransformMakeScale(4, 4)
                 self.tapView.alpha = 0
             },
             completion: nil
